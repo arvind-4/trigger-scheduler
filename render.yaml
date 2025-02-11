@@ -2,10 +2,12 @@ services:
   - type: worker
     name: celery-worker
     runtime: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "celery -A backend.celery:app worker -l info --concurrency 4"
   - type: web
     name: app
+    plan: free
     runtime: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn --bind 0.0.0.0:${PORT:-8000} -w 2 -k uvicorn.workers.UvicornWorker backend.asgi:application"
