@@ -15,6 +15,7 @@ class EventLog(models.Model):
     response = models.JSONField(null=True, blank=True)
     is_test = models.BooleanField(default=False)
     error = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         if not self.pk and self.trigger:
