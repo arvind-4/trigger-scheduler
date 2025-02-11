@@ -1,0 +1,23 @@
+services:
+  - type: worker
+    name: celery-worker
+    region: ohio
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "celery -A backend.celery:app worker -l info --concurrency 4"
+    autoDeploy: true
+  - type: web
+    name: app
+    region: ohio
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn --bind 0.0.0.0:8000 -w 2 -k uvicorn.workers.UvicornWorker backend.asgi:application"
+    autoDeploy: true
+  - type: web
+    name: flower
+    region: ohio
+    plan: free
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "celery -A backend.celery:app beat -l info"
+    autoDeploy: true
