@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+    {% block content %}
+    
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between mb-3">
+            <h1>Triggers</h1>
+            <a href="{% url 'trigger_create' %}" class="btn btn-success">Create Trigger</a>
+        </div>
+        
+        <!-- Table for displaying triggers -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Trigger Type</th>
+                    <th>Interval</th>
+                    <th>Fixed Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trigger in triggers %}
+                    <tr>
+                        <td>{{ trigger.name }}</td>
+                        <td>{{ trigger.trigger_type }}</td>
+                        <td>{{ trigger.interval_value }} {{ trigger.interval_type }}</td>
+                        <td>{{ trigger.fixed_time }}</td>
+                        <td>
+                            <a href="{% url 'trigger_update' trigger.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'trigger_delete' trigger.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href="{% url 'trigger_test' trigger.pk %}" class="btn btn-info btn-sm">Test</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+

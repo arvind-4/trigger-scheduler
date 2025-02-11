@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Delete Trigger</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Are you sure you want to delete the trigger "<strong>{{ trigger.name }}</strong>"?</h5>
+                <p class="card-text">This action cannot be undone.</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Yes, delete</button>
+                    <a href="{% url 'trigger_list' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock %}
+

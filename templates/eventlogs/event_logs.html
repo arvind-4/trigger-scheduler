@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div class="container mt-5">
+        <h1>Event Logs</h1>
+        
+        <!-- Filter Form for Status -->
+        <form method="get" class="mb-4">
+            <div class="form-row">
+                <div class="col">
+                    <select name="status" class="form-control">
+                        <option value="active" {% if status == 'active' %}selected{% endif %}>Active</option>
+                        <option value="archived" {% if status == 'archived' %}selected{% endif %}>Archived</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+        
+        <!-- Event Logs Table -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Trigger</th>
+                    <th>Status</th>
+                    <th>Triggered At</th>
+                    <th>Is Test</th>
+                    <th>Error</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event_log in event_logs %}
+                    <tr>
+                        <td>{{ event_log.id }}</td>
+                        <td>
+                            {% if event_log.trigger %}
+                                {{ event_log.trigger.name }}
+                            {% else %}
+                                No Trigger
+                            {% endif %}
+                        </td>
+                        <td>{{ event_log.status }}</td>
+                        <td>{{ event_log.created_at|date:"M. j, Y, g:i:s A" }}</td>
+                        <td>{{ event_log.is_test }}</td>
+                        <td>{{ event_log.error|default:"No error" }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="6">No event logs found for the selected status.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    {% endblock %}
+
