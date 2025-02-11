@@ -8,6 +8,7 @@
 #     }
 # }
 
+import sys
 from backend.constants import (
     PG_HOST,
     PG_DATABASE,
@@ -26,3 +27,9 @@ DATABASES = {
         "PORT": PG_PORT,
     }
 }
+
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+    }
