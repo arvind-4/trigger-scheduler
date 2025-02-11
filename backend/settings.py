@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-from backend.constants import (REDIS_BACKEND_URL, REDIS_BROKER_URL, SECRET_KEY, DEBUG)
+from backend.constants import REDIS_BACKEND_URL, REDIS_BROKER_URL, SECRET_KEY, DEBUG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_celery_beat",
     "django_celery_results",
-
     "accounts",
     "eventlogs",
     "triggers",

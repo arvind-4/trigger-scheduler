@@ -5,10 +5,12 @@ from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
+
 @login_required
 def trigger_list(request: HttpRequest):
     triggers = Trigger.objects.filter(user=request.user, is_test=False)
     return render(request, "triggers/trigger_list.html", {"triggers": triggers})
+
 
 @login_required
 def trigger_create(request: HttpRequest):
@@ -20,6 +22,7 @@ def trigger_create(request: HttpRequest):
         process_trigger.delay(trigger.id)
         return redirect("trigger_list")
     return render(request, "triggers/trigger_form.html", {"form": form})
+
 
 @login_required
 def trigger_update(request: HttpRequest, pk: int):
@@ -34,6 +37,7 @@ def trigger_update(request: HttpRequest, pk: int):
         form = TriggerForm(instance=trigger)
     return render(request, "triggers/trigger_form.html", {"form": form})
 
+
 @login_required
 def trigger_delete(request: HttpRequest, pk: int):
     trigger = get_object_or_404(Trigger, pk=pk, user=request.user)
@@ -41,6 +45,7 @@ def trigger_delete(request: HttpRequest, pk: int):
         trigger.delete()
         return redirect("trigger_list")
     return render(request, "triggers/trigger_confirm_delete.html", {"trigger": trigger})
+
 
 @login_required
 def trigger_test(request: HttpRequest, pk: int):

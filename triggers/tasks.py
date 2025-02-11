@@ -70,13 +70,13 @@ def manage_event_logs():
     now = timezone.now()
     two_hours_ago = now - timedelta(hours=2)
     archived_count = EventLog.objects.filter(
-        status="active", 
-        triggered_at__lt=two_hours_ago
+        status="active", triggered_at__lt=two_hours_ago
     ).update(status="archived")
     forty_eight_hours_ago = now - timedelta(hours=48)
     deleted_count = EventLog.objects.filter(
-        triggered_at__lt=forty_eight_hours_ago,
-        status="archived"
+        triggered_at__lt=forty_eight_hours_ago, status="archived"
     ).delete()[0]
-    logger.info(f"Archived {archived_count} events, deleted {deleted_count} archived events")
+    logger.info(
+        f"Archived {archived_count} events, deleted {deleted_count} archived events"
+    )
     return {"archived": archived_count, "deleted": deleted_count}
