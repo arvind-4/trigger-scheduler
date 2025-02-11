@@ -1,14 +1,14 @@
 version: '3.8'
 services:
-  # backend:
-  #   build: ./backend
-  #   ports:
-  #     - "8000:8000"
-  #   depends_on:
-  #     - postgres
-  #     - redis
-  #   environment:
-  #     - DATABASE_URL=postgres://eventuser:eventpass@postgres:5432/eventdb
+  backend:
+    build:
+      context: .
+      dockerfile: web.Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
 
   postgres:
     container_name: postgres
@@ -27,8 +27,16 @@ services:
     ports:
       - "6379:6379"
 
-  # celery:
-  #   build: ./backend
-  #   command: 
-  #   depends_on:
-  #     - redis
+  worker:
+    build:
+      context: .
+      dockerfile: worker.Dockerfile
+    depends_on:
+      - redis
+  
+  beat:
+    build:
+      context: .
+      dockerfile: beat.Dockerfile
+    depends_on:
+      - redis
