@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   backend:
+    container_name: backend
     build:
       context: .
       dockerfile: web.Dockerfile
@@ -9,16 +10,16 @@ services:
     depends_on:
       - postgres
       - redis
+    env_file:
+      - .env.docker
 
   postgres:
     container_name: postgres
-    image: postgres:13
-    environment:
-      - POSTGRES_DB=eventdb
-      - POSTGRES_USER=eventuser
-      - POSTGRES_PASSWORD=eventpass
+    image: postgres:16
     ports:
       - "5432:5432"
+    env_file:
+      - .env.docker
 
   redis:
     container_name: redis
@@ -28,15 +29,23 @@ services:
       - "6379:6379"
 
   worker:
+    container_name: worker
     build:
       context: .
       dockerfile: worker.Dockerfile
     depends_on:
       - redis
+      - backend
+    env_file:
+      - .env.docker
   
   beat:
+    container_name: beat
     build:
       context: .
       dockerfile: beat.Dockerfile
     depends_on:
       - redis
+      - backend
+    env_file:
+      - .env.docker
