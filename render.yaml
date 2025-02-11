@@ -1,10 +1,10 @@
 services:
-  - type: worker
+  - type: web
     name: celery-worker
     runtime: python
     plan: free
-    buildCommand: "./build.sh"
-    startCommand: "celery -A backend.celery:app worker -l info --concurrency 4"
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "celery -A backend.celery:app worker -l info"
   - type: web
     name: app
     plan: free
