@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,24 +14,56 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Trigger',
+            name="Trigger",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200)),
-                ('description', models.TextField(blank=True)),
-                ('trigger_type', models.CharField(choices=[('scheduled', 'Scheduled'), ('api', 'API')], max_length=10)),
-                ('interval_type', models.CharField(blank=True, choices=[('minutes', 'Minutes'), ('hours', 'Hours'), ('fixed_time', 'Fixed Time')], max_length=20, null=True)),
-                ('interval_value', models.IntegerField(blank=True, null=True)),
-                ('fixed_time', models.TimeField(blank=True, null=True)),
-                ('is_recurring', models.BooleanField(default=False)),
-                ('next_run_at', models.DateTimeField(blank=True, null=True)),
-                ('endpoint', models.CharField(blank=True, max_length=500, null=True)),
-                ('payload_schema', models.JSONField(blank=True, null=True)),
-                ('is_active', models.BooleanField(default=True)),
-                ('is_test', models.BooleanField(default=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200)),
+                ("description", models.TextField(blank=True)),
+                (
+                    "trigger_type",
+                    models.CharField(
+                        choices=[("scheduled", "Scheduled"), ("api", "API")],
+                        max_length=10,
+                    ),
+                ),
+                (
+                    "interval_type",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("minutes", "Minutes"),
+                            ("hours", "Hours"),
+                            ("fixed_time", "Fixed Time"),
+                        ],
+                        max_length=20,
+                        null=True,
+                    ),
+                ),
+                ("interval_value", models.IntegerField(blank=True, null=True)),
+                ("fixed_time", models.TimeField(blank=True, null=True)),
+                ("is_recurring", models.BooleanField(default=False)),
+                ("next_run_at", models.DateTimeField(blank=True, null=True)),
+                ("endpoint", models.CharField(blank=True, max_length=500, null=True)),
+                ("payload_schema", models.JSONField(blank=True, null=True)),
+                ("is_active", models.BooleanField(default=True)),
+                ("is_test", models.BooleanField(default=False)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

@@ -5,25 +5,45 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('triggers', '0001_initial'),
+        ("triggers", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='EventLog',
+            name="EventLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('triggered_at', models.DateTimeField(auto_now_add=True)),
-                ('status', models.CharField(choices=[('active', 'Active'), ('archived', 'Archived')], default='active', max_length=10)),
-                ('payload', models.JSONField(blank=True, null=True)),
-                ('response', models.JSONField(blank=True, null=True)),
-                ('is_test', models.BooleanField(default=False)),
-                ('error', models.TextField(blank=True, null=True)),
-                ('trigger', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='triggers.trigger')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("triggered_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("active", "Active"), ("archived", "Archived")],
+                        default="active",
+                        max_length=10,
+                    ),
+                ),
+                ("payload", models.JSONField(blank=True, null=True)),
+                ("response", models.JSONField(blank=True, null=True)),
+                ("is_test", models.BooleanField(default=False)),
+                ("error", models.TextField(blank=True, null=True)),
+                (
+                    "trigger",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="triggers.trigger",
+                    ),
+                ),
             ],
         ),
     ]

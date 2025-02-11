@@ -9,12 +9,12 @@
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eventdb',
-        'USER': 'eventuser',
-        'PASSWORD': 'eventpass',
-        'HOST': '0.0.0.0',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "eventdb",
+        "USER": "eventuser",
+        "PASSWORD": "eventpass",
+        "HOST": "0.0.0.0",
+        "PORT": "5432",
     }
 }
