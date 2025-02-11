@@ -8,13 +8,21 @@
 #     }
 # }
 
+from backend.constants import (
+    PG_HOST,
+    PG_DATABASE,
+    PG_USER,
+    PG_PASSWORD,
+    PG_PORT,
+)
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "eventdb",
-        "USER": "eventuser",
-        "PASSWORD": "eventpass",
-        "HOST": "0.0.0.0",
-        "PORT": "5432",
+        "NAME": PG_DATABASE,
+        "USER": PG_USER,
+        "PASSWORD": PG_PASSWORD,
+        "HOST": PG_HOST,
+        "PORT": PG_PORT,
     }
 }

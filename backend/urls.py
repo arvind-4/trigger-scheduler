@@ -15,52 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from drf_yasg import openapi
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import path, include
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from rest_framework.routers import DefaultRouter
-from triggers.views import TriggerViewSet
-from eventlogs.views import RegisterUserViewSet, EventLogViewSet
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-router = DefaultRouter()
-router.register(r"triggers", TriggerViewSet, basename="trigger")
-router.register(r"eventlogs", EventLogViewSet, basename="eventlog")
-router.register(r"register", RegisterUserViewSet, basename="register")
-
-django_function_views_patterns = [
-    path("admin/", admin.site.urls),
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-]
-
-django_class_based_views_patterns = [
-    path("api/", include(router.urls)),
-]
-
-schema_view = get_schema_view(
-    openapi.Info(
-        title="Event Triggers API",
-        default_version="v1",
-        description="API for managing event triggers",
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
-
-swagger_patterns = [
-    path(
-        "swagger<format>/", schema_view.without_ui(cache_timeout=0), name="schema-json"
-    ),
-    path("", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
-    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
-]
+def home(request):
+    return render(request, 'home.html')
 
 
 urlpatterns = [
-    *django_function_views_patterns,
-    *django_class_based_views_patterns,
-    *swagger_patterns,
+    path('', home, name='home'),
+    path("admin/", admin.site.urls),
+    path("trigger/", include("triggers.urls")),
+    path("eventlogs/", include("eventlogs.urls")),
+    path("accounts/", include("accounts.urls")),
 ]
