@@ -67,6 +67,9 @@ celery -A backend.celery:app beat -l info
 python manage.py runserver
 ```
 
+The cost of running the server is currently free, but my approach is somewhat hacky. A more efficient solution would be to use an EC2 instance or any VM to host it at a lower cost.
+
+
 ## Authors
 
 [@Arvind](https://www.github.com/arvind-4)
