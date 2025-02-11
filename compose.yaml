@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  # backend:
+  #   build: ./backend
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #   environment:
+  #     - DATABASE_URL=postgres://eventuser:eventpass@postgres:5432/eventdb
+
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=eventdb
+      - POSTGRES_USER=eventuser
+      - POSTGRES_PASSWORD=eventpass
+    ports:
+      - "5432:5432"
+
+  redis:
+    container_name: redis
+    restart: always
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  # celery:
+  #   build: ./backend
+  #   command: 
+  #   depends_on:
+  #     - redis
