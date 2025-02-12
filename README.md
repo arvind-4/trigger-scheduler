@@ -5,9 +5,10 @@ A django app that helps with scheduling trigger for a particular period of time.
 
 The Deployed url: https://app-4bk0.onrender.com
 
-## Demo
-
-[![Watch the video](https://raw.githubusercontent.com/arvind-4/trigger-scheduler/refs/heads/main/.github/static/image.png?token=GHSAT0AAAAAAC4TEXJG6OU6WZRAAV2Z7HWMZ5LTC3A)](https://drive.google.com/file/d/1tcwVyYnZySQt05KsZKvrGgdHqwcnQ5FY/view?usp=sharing)
+## 📸 Screenshots:
+<div align="center">
+<img src=".github/static/image.png" alt="Home Page" />
+</div>
 
 
 **Demo Video Link:** https://drive.google.com/file/d/1tcwVyYnZySQt05KsZKvrGgdHqwcnQ5FY/view?usp=sharing
