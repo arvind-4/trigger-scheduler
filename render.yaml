@@ -1,5 +1,5 @@
 services:
-  - type: web
+  - type: worker
     name: celery-worker
     runtime: python
     plan: free
@@ -11,7 +11,7 @@ services:
     runtime: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn --bind 0.0.0.0:${PORT:-8000} -w 2 -k uvicorn.workers.UvicornWorker backend.asgi:application"
-  - type: web
+  - type: worker
     name: beat
     plan: free
     runtime: python
