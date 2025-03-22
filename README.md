@@ -1,20 +1,15 @@
-
 # trigger scheduler
 
 A django app that helps with scheduling trigger for a particular period of time.
 
-The Deployed url: https://app-4bk0.onrender.com
-
 ## 📸 Screenshots:
+
 <div align="center">
 <img src=".github/static/image.png" alt="Home Page" />
 </div>
 
-
-**Demo Video Link:** https://drive.google.com/file/d/1tcwVyYnZySQt05KsZKvrGgdHqwcnQ5FY/view?usp=sharing
-
-
 ## Tech Stack
+
 - Python
 - Django
 - Bootstrap
@@ -45,6 +40,7 @@ docker compose up --build
 ```
 
 Manual Set-up
+
 - Create a virtual environment
 - Install dependencies
 - Copy the envs
@@ -69,7 +65,6 @@ python manage.py runserver
 ```
 
 The cost of running the server is currently free, but my approach is somewhat hacky. A more efficient solution would be to use an EC2 instance or any VM to host it at a lower cost.
-
 
 ## Authors
 
