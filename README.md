@@ -1,4 +1,4 @@
-# trigger scheduler
+# Trigger Scheduler
 
 A django app that helps with scheduling trigger for a particular period of time.
 
